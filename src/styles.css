@@ -1,0 +1,71 @@
+
+:root {
+    --color-kiko-primary: #040304; 
+    --color-kiko-accent: #FF7CAC; 
+    --color-kiko-warn: #e91e63; 
+    --color-kiko-text: #333333; 
+}
+
+html, body { 
+    min-height: 100%;
+    margin: 0;
+    overflow-y: auto; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: var(--color-kiko-background); 
+}
+
+
+.mat-toolbar.mat-primary {
+    background-color: var(--color-kiko-primary) !important; 
+    color: white;
+}
+
+
+.mat-raised-button.mat-primary, .mat-flat-button.mat-primary {
+    background-color: var(--color-kiko-primary) !important;
+    color: white !important;
+}
+
+
+.mat-raised-button.mat-accent, .mat-flat-button.mat-accent {
+    background-color: var(--color-kiko-accent) !important;
+    color: var(--color-kiko-primary) !important;
+}
+
+
+
+.mat-toolbar {
+    background-color: var(--color-kiko-primary) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+body {
+    padding-top: 64px; 
+}
+.floating-cart {
+    position: fixed;
+    left: 20px; 
+    bottom: 20px;
+    z-index: 1001; 
+    width: 55px;
+    height: 55px;
+    background-color: var(--color-kiko-accent) !important; 
+    box-shadow: 0 5px 15px rgba(204, 0, 102, 0.4); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.floating-cart:hover {
+    transform: scale(1.1);
+}
+
+.floating-cart .mat-badge-content {
+    background-color: var(--color-kiko-warn) !important;
+    color: white !important;
+}

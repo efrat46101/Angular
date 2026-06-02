@@ -1,0 +1,40 @@
+<div class="products-page-container container-fluid">
+  <h2>רשימת מוצרים</h2>
+
+  <div class="row">
+
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
+
+      <div *ngFor="let product of products" class="col mb-4">
+        <div class="product-card">
+
+          <div class="product-image-wrapper" (click)="openModal(product)">
+            <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+          </div>
+
+
+          <div class="product-info-container" (click)="openModal(product)">
+
+            <p class="category-info">
+              קטגוריה: <span [style.color]="(product.Level1Id | categoryPath).color"
+                [innerText]="(product.Level1Id | categoryPath).path"></span>
+            </p>
+            <h3 class="product-name">{{ product.name }}</h3>
+
+            <p class="price">
+              {{ product.price | currency: 'USD':'symbol':'1.2-2' }}
+            </p>
+          </div>
+
+          <button class="add-to-cart-button" (click)="addItemToCart(product)">
+            <mat-icon>shopping_bag</mat-icon> הוספה לסל
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <app-product-modal *ngIf="showModal && selectedProduct" [product]="selectedProduct" (close)="closeModal()"
+      (addToCart)="addItemToCart($event)"></app-product-modal>
+  </div>

@@ -1,0 +1,29 @@
+<div class="modal-overlay" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        
+        <button class="close-button" (click)="onClose()">X</button>
+        
+        <h2>{{ product.name }}</h2>
+        
+        <img [src]="product.imageUrl" [alt]="product.name" class="modal-image">
+        
+        <p *ngIf="product.description">{{ product.description }}</p>
+
+        <p class="price-full">
+            מחיר: {{ product.price | currency: 'USD':'symbol':'1.2-2' }}
+        </p>
+
+        <p class="category-path">
+            קטגוריה: <span [innerText]="(product.Level1Id | categoryPath).path"></span>
+        </p>
+
+<button 
+    mat-raised-button 
+    color="accent" 
+    class="add-to-cart-button" 
+    (click)="onAddToCart()">
+    <mat-icon>add_shopping_cart</mat-icon> הוספה לסל 
+</button>
+
+    </div>
+</div>

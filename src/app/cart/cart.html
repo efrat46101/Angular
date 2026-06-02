@@ -1,0 +1,72 @@
+<mat-card class="cart-container">
+    <mat-card-title>עגלת הקניות שלך</mat-card-title>
+    <mat-card-content>
+        <div *ngIf="(cartItems$ | async) as items">
+            <div *ngIf="items.length === 0; else cartContent" class="empty-cart-message">
+                <p>עגלת הקניות שלך ריקה. בואו נוסיף כמה מוצרים!</p>
+                
+                <a mat-raised-button color="primary" routerLink="/products">לדף המוצרים</a>
+            </div>
+
+            <ng-template #cartContent>
+                <div class="cart-table-wrapper">
+                    <table class="mat-elevation-z2">
+                        <thead>
+                            <tr>
+                                <th>מוצר</th>
+                                <th class="numeric-column">מחיר ליחידה</th>
+                                <th class="numeric-column">כמות</th>
+                                <th class="numeric-column">סה"כ לפריט</th>
+                                <th>פעולות</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td class="item-name-cell">
+                                    <img [src]="item.imageUrl" [alt]="item.name" class="item-thumbnail">
+                                    <span>{{ item.name }}</span>
+                                </td>
+                                
+                                <td class="numeric-column">
+                                    {{ item.price | currency: 'USD':'symbol':'1.2-2' }}
+                                </td>
+                                
+                                <td class="quantity-control numeric-column">
+                                    <button mat-icon-button color="warn" (click)="decrementQuantity(item)" title="הורד כמות">
+                                        <mat-icon>remove</mat-icon>
+                                    </button>
+                                    <span class="quantity-display">{{ item.quantity }}</span>
+                                    <button mat-icon-button color="primary" (click)="incrementQuantity(item)" title="הוסף כמות">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </td>
+
+                                <td class="numeric-column total-per-item">
+                                    {{ (item.price * item.quantity) | currency: 'USD':'symbol':'1.2-2' }}
+                                </td>
+                                
+                                <td>
+                                    <button mat-icon-button color="warn" (click)="deleteItemFromCart(item.id)" title="מחק פריט">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <mat-divider></mat-divider>
+                
+                <div class="cart-summary">
+                    <h3>
+                        סכום לתשלום:<span class="total-price-value">{{ totalPrice$ | async | currency: 'USD':'symbol':'1.2-2' }}</span>
+                    </h3>
+                    
+                    <button mat-raised-button color="accent" class="checkout-button">
+                        <mat-icon></mat-icon>  מעבר לתשלום
+                    </button>
+                </div>
+            </ng-template>
+        </div>
+    </mat-card-content>
+</mat-card>

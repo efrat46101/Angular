@@ -1,0 +1,30 @@
+<div class="tracker-container">
+  <h2>רשימת פעולות משתמש</h2>
+
+  <button class="sort-button" (click)="toggleSort()">
+  
+    <span *ngIf="sortDirection === 'asc'">עולה ⬆️</span>
+    <span *ngIf="sortDirection === 'desc'">יורד ⬇️</span>
+  </button>
+
+  <table class="actions-table">
+    <thead>
+      <tr>
+        <th (click)="toggleSort()" class="sortable-header">תאריך ושעה</th>
+        <th>שם הפעולה </th>
+        <th> פרטי מוצר</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let action of actions">
+        <td>{{ action.timestamp }}</td>
+        <td>{{ action.actionName }}</td>
+        <td>{{ action.productDetails }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="actions.length === 0" class="no-actions">
+  טרם נרשמו פעולות.
+  </p>
+</div>

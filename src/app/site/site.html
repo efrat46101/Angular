@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="site-toolbar">
+
+    <span class="site-title">KIKO MILANO</span>
+
+    <span class="spacer"></span>
+    <a mat-button routerLink="/cart" routerLinkActive="active-link" title="סל הקניות">
+        <mat-icon matBadgeColor="accent" [matBadge]="(totalItems$ | async)!"
+            [matBadgeHidden]="(totalItems$ | async) === 0">
+            shopping_cart
+        </mat-icon>
+        סל הקניות
+    </a>
+
+
+    <a mat-button routerLink="/products" routerLinkActive="active-link" title="מוצרים">
+        <mat-icon>local_mall</mat-icon>
+        מוצרים
+    </a>
+
+
+    <a mat-button routerLink="/about" routerLinkActive="active-link" title="אודותינו">
+        <mat-icon>info</mat-icon>
+        אודותינו
+    </a>
+
+    <a mat-button routerLink="/userActionsTracker" routerLinkActive="active-link" title="מעקב פעולות">
+        <mat-icon>track_changes</mat-icon>
+        מעקב פעולות
+    </a>
+
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<a mat-fab class="floating-cart" routerLink="/cart">
+    <mat-icon matBadgeColor="warn" [matBadge]="(totalItems$ | async)!" [matBadgeHidden]="(totalItems$ | async) === 0">
+        shopping_cart
+    </mat-icon>
+</a>
